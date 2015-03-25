@@ -4,6 +4,8 @@
 
 This module is a fork of https://github.com/rodjek/puppet-logrotate merging some of the outstanding pull requests
 
+I have also added the puppetlabs_spec_help functionality as used in [Gareth Rushgrove](https://github.com/garethr)'s [puppet-module-skeleton](https://github.com/garethr/puppet-module-skeleton).
+
 ## Description  
 
 A more Puppety way of managing logrotate configs.  Where possible, as many of

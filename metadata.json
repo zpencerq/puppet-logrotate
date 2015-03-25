@@ -1,6 +1,6 @@
 {
   "name": "yo61-logrotate",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "author": "Robin Bowees <robin.bowes@yo61.com>",
   "summary": "Manage logrotate",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "project_page": "https://github.com/yo61/puppet-logrotate",
   "issues_url": "https://github.com/yo61/puppet-logrotate/issues",
   "tags": [
-    "logrotate",
+    "logrotate"
   ],
   "dependencies": [
     {
@@ -50,12 +50,6 @@
     },
     {
       "operatingsystem": "Scientific",
-      "operatingsystemrelease": [
-        "5",
-        "6",
-        "7"
-      ]
-    },
       "operatingsystemrelease": [
         "5",
         "6",
