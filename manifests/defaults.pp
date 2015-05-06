@@ -2,11 +2,11 @@
 #
 class logrotate::defaults{
 
-  case getvar('::osfamily') {
+  case $::osfamily {
     'Debian': {
 
       if !defined( Logrotate::Conf['/etc/logrotate.conf'] ) {
-        case getvar('::lsbdistcodename') {
+        case $::lsbdistcodename {
           'trusty': {
             logrotate::conf {'/etc/logrotate.conf':
               su_group => 'syslog'
