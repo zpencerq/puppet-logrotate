@@ -1,8 +1,20 @@
 require 'spec_helper'
 
 describe 'logrotate' do
-  it do
-    should contain_package('logrotate').with_ensure('latest')
+  context 'supported operating systems' do
+    on_supported_os.each do |os, facts|
+      context "on #{os}" do
+        let(:facts) do
+          facts
+        end
+
+        context "logrotate class without any parameters" do
+          let(:params) {{ }}
+
+          it { is_expected.to compile.with_all_deps }
+
+          it do
+            should contain_package('logrotate').with_ensure('latest')
 
 #    should contain_file('/etc/logrotate.conf').with({
 #      'ensure'  => 'file',
@@ -14,45 +26,28 @@ describe 'logrotate' do
 #      'require' => 'Package[logrotate]',
 #    })
 
-    should contain_file('/etc/logrotate.d').with({
-      'ensure'  => 'directory',
-      'owner'   => 'root',
-      'group'   => 'root',
-      'mode'    => '0755',
-      'require' => 'Package[logrotate]',
-    })
+            should contain_file('/etc/logrotate.d').with({
+              'ensure'  => 'directory',
+              'owner'   => 'root',
+              'group'   => 'root',
+              'mode'    => '0755',
+              'require' => 'Package[logrotate]',
+            })
 
-    should contain_file('/etc/cron.daily/logrotate').with({
-      'ensure'  => 'file',
-      'owner'   => 'root',
-      'group'   => 'root',
-      'mode'    => '0555',
-      'source'  => 'puppet:///modules/logrotate/etc/cron.daily/logrotate',
-      'require' => 'Package[logrotate]',
-    })
-  end
+            should contain_file('/etc/cron.daily/logrotate').with({
+              'ensure'  => 'file',
+              'owner'   => 'root',
+              'group'   => 'root',
+              'mode'    => '0555',
+              'source'  => 'puppet:///modules/logrotate/etc/cron.daily/logrotate',
+              'require' => 'Package[logrotate]',
+            })
 
-  context 'on Debian' do
-    let(:facts) { {:osfamily => 'Debian'} }
+            should contain_class('logrotate::defaults')
 
-    it { should contain_class('logrotate::defaults') }
-  end
-
-  context 'on RedHat' do
-    let(:facts) { {:osfamily => 'RedHat'} }
-
-    it { should contain_class('logrotate::defaults') }
-  end
-
-  context 'on SuSE' do
-    let(:facts) { {:osfamily => 'SuSE'} }
-
-    it { should contain_class('logrotate::defaults') }
-  end
-
-  context 'on Gentoo' do
-    let(:facts) { {:operatingsystem => 'Gentoo'} }
-
-    it { should contain_class('logrotate::defaults') }
+          end
+        end
+      end
+    end
   end
 end
