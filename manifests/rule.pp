@@ -294,12 +294,15 @@ define logrotate::rule(
     }
   }
 
-  validate_re($maxage, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: maxage must be an integer")
-  validate_re($minsize, ['^undef$', '^\d+[kMG]?$'], "Logrotate::Conf[${name}]: minsize must match /\\d+[kMG]?/")
-  validate_re($rotate, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: rotate must be an integer")
-  validate_re($size, ['^undef$', '^\d+[kMG]?$'], "Logrotate::Conf[${name}]: size must match /\\d+[kMG]?/")
-  validate_re($shredcycles, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: shredcycles must be an integer")
-  validate_re($start, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: start must be an integer")
+  # Interpolate any variables that might be integers into strings for futer parser compatibility
+  # Add an arbitrary character to the string to stop puppet-lint complaining
+  # Any better ideas greatfully received
+  validate_re("X${maxage}", ['^Xundef$', '^X\d+$'], "Logrotate::Conf[${name}]: maxage must be an integer")
+  validate_re("X${minsize}", ['^Xundef$', '^X\d+[kMG]?$'], "Logrotate::Conf[${name}]: minsize must match /\\d+[kMG]?/")
+  validate_re("X${rotate}", ['^Xundef$', '^X\d+$'], "Logrotate::Conf[${name}]: rotate must be an integer")
+  validate_re("X${size}", ['^Xundef$', '^X\d+[kMG]?$'], "Logrotate::Conf[${name}]: size must match /\\d+[kMG]?/")
+  validate_re("X${shredcycles}", ['^Xundef$', '^X\d+$'], "Logrotate::Conf[${name}]: shredcycles must be an integer")
+  validate_re("X${start}", ['^Xundef$', '^X\d+$'], "Logrotate::Conf[${name}]: start must be an integer")
 
   case $su {
     'undef',false: {}
