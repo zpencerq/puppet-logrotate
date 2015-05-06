@@ -180,7 +180,7 @@ define logrotate::conf (
     }
   }
 
-  case "${maxage}" {
+  case "${maxage}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+$/: {}
     default: {
@@ -188,7 +188,7 @@ define logrotate::conf (
     }
   }
 
-  case "${minsize}" {
+  case "${minsize}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+[kMG]?$/: {}
     default: {
@@ -196,7 +196,7 @@ define logrotate::conf (
     }
   }
 
-  case "${rotate}" {
+  case "${rotate}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+$/: {}
     default: {
@@ -204,7 +204,7 @@ define logrotate::conf (
     }
   }
 
-  case "${size}" {
+  case "${size}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+[kMG]?$/: {}
     default: {
@@ -212,7 +212,7 @@ define logrotate::conf (
     }
   }
 
-  case "${shredcycles}" {
+  case "${shredcycles}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+$/: {}
     default: {
@@ -220,7 +220,7 @@ define logrotate::conf (
     }
   }
 
-  case "${start}" {
+  case "${start}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+$/: {}
     default: {

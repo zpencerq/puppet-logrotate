@@ -296,7 +296,7 @@ define logrotate::rule(
     }
   }
 
-  case "${maxage}" {
+  case "${maxage}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+$/: {}
     default: {
@@ -304,7 +304,7 @@ define logrotate::rule(
     }
   }
 
-  case "${minsize}" {
+  case "${minsize}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+[kMG]?$/: {}
     default: {
@@ -312,7 +312,7 @@ define logrotate::rule(
     }
   }
 
-  case "${rotate}" {
+  case "${rotate}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+$/: {}
     default: {
@@ -320,7 +320,7 @@ define logrotate::rule(
     }
   }
 
-  case "${size}" {
+  case "${size}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+[kMG]?$/: {}
     default: {
@@ -328,7 +328,7 @@ define logrotate::rule(
     }
   }
 
-  case "${shredcycles}" {
+  case "${shredcycles}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+$/: {}
     default: {
@@ -336,7 +336,7 @@ define logrotate::rule(
     }
   }
 
-  case "${start}" {
+  case "${start}" { # lint:ignore:only_variable_string
     'undef': {}
     /^\d+$/: {}
     default: {
