@@ -180,7 +180,7 @@ define logrotate::conf (
     }
   }
 
-  case $maxage {
+  case "${maxage}" {
     'undef': {}
     /^\d+$/: {}
     default: {
@@ -188,7 +188,7 @@ define logrotate::conf (
     }
   }
 
-  case $minsize {
+  case "${minsize}" {
     'undef': {}
     /^\d+[kMG]?$/: {}
     default: {
@@ -196,7 +196,7 @@ define logrotate::conf (
     }
   }
 
-  case $rotate {
+  case "${rotate}" {
     'undef': {}
     /^\d+$/: {}
     default: {
@@ -204,7 +204,7 @@ define logrotate::conf (
     }
   }
 
-  case $size {
+  case "${size}" {
     'undef': {}
     /^\d+[kMG]?$/: {}
     default: {
@@ -212,7 +212,7 @@ define logrotate::conf (
     }
   }
 
-  case $shredcycles {
+  case "${shredcycles}" {
     'undef': {}
     /^\d+$/: {}
     default: {
@@ -220,7 +220,7 @@ define logrotate::conf (
     }
   }
 
-  case $start {
+  case "${start}" {
     'undef': {}
     /^\d+$/: {}
     default: {
