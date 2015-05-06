@@ -161,9 +161,7 @@ define logrotate::rule(
   #############################################################################
   # SANITY CHECK VALUES
 
-  if $name !~ /^[a-zA-Z0-9\._-]+$/ {
-    fail("Logrotate::Rule[${name}]: namevar must be alphanumeric")
-  }
+  validate_re($name, '^[a-zA-Z0-9\._-]+$', "Logrotate::Rule[${name}]: namevar must be alphanumeric")
 
   case $ensure {
     'present': {
@@ -296,53 +294,12 @@ define logrotate::rule(
     }
   }
 
-  case "${maxage}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+$/: {}
-    default: {
-      fail("Logrotate::Rule[${name}]: maxage must be an integer")
-    }
-  }
-
-  case "${minsize}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+[kMG]?$/: {}
-    default: {
-      fail("Logrotate::Rule[${name}]: minsize must match /\\d+[kMG]?/")
-    }
-  }
-
-  case "${rotate}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+$/: {}
-    default: {
-      fail("Logrotate::Rule[${name}]: rotate must be an integer")
-    }
-  }
-
-  case "${size}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+[kMG]?$/: {}
-    default: {
-      fail("Logrotate::Rule[${name}]: size must match /\\d+[kMG]?/")
-    }
-  }
-
-  case "${shredcycles}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+$/: {}
-    default: {
-      fail("Logrotate::Rule[${name}]: shredcycles must be an integer")
-    }
-  }
-
-  case "${start}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+$/: {}
-    default: {
-      fail("Logrotate::Rule[${name}]: start must be an integer")
-    }
-  }
+  validate_re($maxage, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: maxage must be an integer")
+  validate_re($minsize, ['^undef$', '^\d+[kMG]?$'], "Logrotate::Conf[${name}]: minsize must match /\\d+[kMG]?/")
+  validate_re($rotate, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: rotate must be an integer")
+  validate_re($size, ['^undef$', '^\d+[kMG]?$'], "Logrotate::Conf[${name}]: size must match /\\d+[kMG]?/")
+  validate_re($shredcycles, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: shredcycles must be an integer")
+  validate_re($start, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: start must be an integer")
 
   case $su {
     'undef',false: {}

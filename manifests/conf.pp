@@ -50,17 +50,8 @@ define logrotate::conf (
 #############################################################################
 # SANITY CHECK VALUES
 
-  if $name !~ /^[a-zA-Z0-9\._\/-]+$/ {
-    fail("Logrotate::Conf[${name}]: namevar must be alphanumeric")
-  }
-
-  case $ensure {
-    'present','file': {}
-    'absent': {}
-    default: {
-      fail("Logrotate::Conf[${name}]: invalid ensure value")
-    }
-  }
+  validate_re($name, '^[a-zA-Z0-9\._\/-]+$', "Logrotate::Conf[${name}]: namevar must be alphanumeric")
+  validate_re($ensure, '^(?:absent|present|file)$', "Logrotate::Conf[${name}]: invalid ensure value")
 
   case $compress {
     'undef': {}
@@ -180,69 +171,15 @@ define logrotate::conf (
     }
   }
 
-  case "${maxage}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+$/: {}
-    default: {
-      fail("Logrotate::Conf[${name}]: maxage must be an integer")
-    }
-  }
+  validate_re($maxage, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: maxage must be an integer")
+  validate_re($minsize, ['^undef$', '^\d+[kMG]?$'], "Logrotate::Conf[${name}]: minsize must match /\\d+[kMG]?/")
+  validate_re($rotate, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: rotate must be an integer")
+  validate_re($size, ['^undef$', '^\d+[kMG]?$'], "Logrotate::Conf[${name}]: size must match /\\d+[kMG]?/")
+  validate_re($shredcycles, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: shredcycles must be an integer")
+  validate_re($start, ['^undef$', '^\d+$'], "Logrotate::Conf[${name}]: start must be an integer")
 
-  case "${minsize}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+[kMG]?$/: {}
-    default: {
-      fail("Logrotate::Conf[${name}]: minsize must match /\\d+[kMG]?/")
-    }
-  }
-
-  case "${rotate}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+$/: {}
-    default: {
-      fail("Logrotate::Conf[${name}]: rotate must be an integer")
-    }
-  }
-
-  case "${size}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+[kMG]?$/: {}
-    default: {
-      fail("Logrotate::Conf[${name}]: size must match /\\d+[kMG]?/")
-    }
-  }
-
-  case "${shredcycles}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+$/: {}
-    default: {
-      fail("Logrotate::Conf[${name}]: shredcycles must be an integer")
-    }
-  }
-
-  case "${start}" { # lint:ignore:only_variable_string
-    'undef': {}
-    /^\d+$/: {}
-    default: {
-      fail("Logrotate::Conf[${name}]: start must be an integer")
-    }
-  }
-
-  case $su_user {
-    'undef': {}
-    /[a-z_][a-z0-9_]{0,30}/: {}
-    default: {
-      fail("Logrotate::Conf[${name}]: su_user must match /[a-z_][a-z0-9_]{0,30}/")
-    }
-  }
-
-  case $su_group {
-    'undef': {}
-    /[a-z_][a-z0-9_]{0,30}/: {}
-    default: {
-      fail("Logrotate::Conf[${name}]: su_group must match /[a-z_][a-z0-9_]{0,30}/")
-    }
-  }
+  validate_re($su_user, ['^undef$', '^[a-z_][a-z0-9_]{0,30}$'], "Logrotate::Conf[${name}]: su_user must match /^[a-z_][a-z0-9_]{0,30}$/")
+  validate_re($su_group, ['^undef$', '^[a-z_][a-z0-9_]{0,30}$'], "Logrotate::Conf[${name}]: su_group must match /^[a-z_][a-z0-9_]{0,30}$/")
 
   case $mailfirst {
     'undef',false: {}
