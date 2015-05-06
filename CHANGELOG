@@ -1,3 +1,6 @@
+2015-05-06 Release 1.2.6
+- Fix test failures on future parser
+
 2015-05-06 Release 1.2.5
 - Switch some validation code to use validate_re
 
