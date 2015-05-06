@@ -1,3 +1,6 @@
+2015-05-06 Release 1.2.4
+- Add puppet-lint exclusions
+
 2015-05-06 Release 1.2.3
 - More work on testing
 - fix warning when running puppet module list caused by "-" instead of "/" in
