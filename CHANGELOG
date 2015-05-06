@@ -1,3 +1,6 @@
+2015-05-06 Release 1.2.5
+- Switch some validation code to use validate_re
+
 2015-05-06 Release 1.2.4
 - Add puppet-lint exclusions
 
