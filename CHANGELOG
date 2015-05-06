@@ -1,3 +1,8 @@
+2015-05-06 Release 1.2.2
+- More work on testing
+- fix warning when running puppet module list caused by "-" instead of "/" in
+dependencies in metadata
+
 2015-05-06 Release 1.2.1
 - Update tests, Rakefile, etc.
 
