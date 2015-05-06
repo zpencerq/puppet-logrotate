@@ -4,9 +4,6 @@ require 'puppet/vendor/semantic/lib/semantic' unless Puppet.version.to_f < 3.6
 require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
 
-# Make sure puppet strict_variables is enabled
-ENV['STRICT_VARIABLES']='yes'
-
 # These gems aren't always present, for instance
 # on Travis with --without development
 begin
