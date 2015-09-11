@@ -4,15 +4,20 @@ class logrotate::config{
   $manage_cron_daily = $::logrotate::manage_cron_daily
   $config            = $::logrotate::config
 
-  file {'/etc/logrotate.d':
-      ensure => directory,
-      mode   => '0755',
+  file{'/etc/logrotate.d':
+    ensure => directory,
+    owner => 'root',
+    group => 'root',
+    mode   => '0755',
   }
+
   if $manage_cron_daily {
-    file {'/etc/cron.daily/logrotate':
-        ensure => file,
-        mode   => '0555',
-        source => 'puppet:///modules/logrotate/etc/cron.daily/logrotate',
+    file{'/etc/cron.daily/logrotate':
+      ensure => file,
+      owner => 'root',
+      group => 'root',
+      mode   => '0555',
+      source => 'puppet:///modules/logrotate/etc/cron.daily/logrotate',
     }
   }
 
