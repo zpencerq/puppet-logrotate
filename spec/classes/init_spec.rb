@@ -31,7 +31,6 @@ describe 'logrotate' do
               'owner'   => 'root',
               'group'   => 'root',
               'mode'    => '0755',
-              'require' => 'Package[logrotate]',
             })
 
             should contain_file('/etc/cron.daily/logrotate').with({
@@ -40,7 +39,6 @@ describe 'logrotate' do
               'group'   => 'root',
               'mode'    => '0555',
               'source'  => 'puppet:///modules/logrotate/etc/cron.daily/logrotate',
-              'require' => 'Package[logrotate]',
             })
 
             should contain_class('logrotate::defaults')
