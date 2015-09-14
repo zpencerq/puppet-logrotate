@@ -1,3 +1,13 @@
+2015-09-14 Release 1.2.8
+- Fix hidden unicode character (#8)
+- Allow config to be passed in as an hash (#6)
+- Fix dependency issue (#7)
+- refactor main class (mostly to facilitate #7)
+- update test environment to use puppet 4
+
+2015-05-06 Release 1.2.7
+- Metadata-only release (just bumped version)
+
 2015-05-06 Release 1.2.6
 - Fix test failures on future parser
 
