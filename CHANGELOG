@@ -4,6 +4,7 @@
 - Fix dependency issue (#7)
 - refactor main class (mostly to facilitate #7)
 - update test environment to use puppet 4
+- switch stdlib fixture to https source
 
 2015-05-06 Release 1.2.7
 - Metadata-only release (just bumped version)
