@@ -50,6 +50,11 @@
 #                   but not before the scheduled rotation time (optional).
 #                   The default units are bytes, append k, M or G for kilobytes,
 #                   megabytes and gigabytes respectively.
+# maxsize         - The String maximum size a log file may be to be rotated;
+#                   When maxsize is used, both the size and timestamp of a log
+#                   file are considered for rotation.
+#                   The default units are bytes, append k, M or G for kilobytes,
+#                   megabytes and gigabytes respectively.
 # missingok       - A Boolean specifying whether logrotate should ignore missing
 #                   log files or issue an error (optional).
 # olddir          - A String path to a directory that rotated logs should be
@@ -139,6 +144,7 @@ define logrotate::rule(
                         $maillast        = 'undef',
                         $maxage          = 'undef',
                         $minsize         = 'undef',
+                        $maxsize         = 'undef',
                         $missingok       = 'undef',
                         $olddir          = 'undef',
                         $postrotate      = 'undef',
@@ -299,6 +305,7 @@ define logrotate::rule(
   # Any better ideas greatfully received
   validate_re("X${maxage}", ['^Xundef$', '^X\d+$'], "Logrotate::Conf[${name}]: maxage must be an integer")
   validate_re("X${minsize}", ['^Xundef$', '^X\d+[kMG]?$'], "Logrotate::Conf[${name}]: minsize must match /\\d+[kMG]?/")
+  validate_re("X${maxsize}", ['^Xundef$', '^X\d+[kMG]?$'], "Logrotate::Conf[${name}]: maxsize must match /\\d+[kMG]?/")
   validate_re("X${rotate}", ['^Xundef$', '^X\d+$'], "Logrotate::Conf[${name}]: rotate must be an integer")
   validate_re("X${size}", ['^Xundef$', '^X\d+[kMG]?$'], "Logrotate::Conf[${name}]: size must match /\\d+[kMG]?/")
   validate_re("X${shredcycles}", ['^Xundef$', '^X\d+$'], "Logrotate::Conf[${name}]: shredcycles must be an integer")

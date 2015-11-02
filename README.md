@@ -83,6 +83,11 @@ minsize         - The String minimum size a log file must be to be rotated,
                   but not before the scheduled rotation time (optional).
                   The default units are bytes, append k, M or G for kilobytes,
                   megabytes and gigabytes respectively.
+maxsize         - The String maximum size a log file may be to be rotated;
+                  When maxsize is used, both the size and timestamp of a log
+                  file are considered for rotation.
+                  The default units are bytes, append k, M or G for kilobytes,
+                  megabytes and gigabytes respectively.
 missingok       - A Boolean specifying whether logrotate should ignore missing
                   log files or issue an error (optional).
 olddir          - A String path to a directory that rotated logs should be
