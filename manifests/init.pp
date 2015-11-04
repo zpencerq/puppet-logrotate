@@ -1,6 +1,6 @@
 #
 class logrotate (
-  $ensure            = 'latest',
+  $ensure            = 'present',
   $hieramerge        = false,
   $manage_cron_daily = true,
   $package           = 'logrotate',
