@@ -1,12 +1,12 @@
 # Logrotate module for Puppet
 
-## Disclaimer 
+## Disclaimer
 
 This module is a fork of https://github.com/rodjek/puppet-logrotate merging some of the outstanding pull requests
 
 I have also added the puppetlabs_spec_help functionality as used in [Gareth Rushgrove](https://github.com/garethr)'s [puppet-module-skeleton](https://github.com/garethr/puppet-module-skeleton).
 
-## Description  
+## Description
 
 A more Puppety way of managing logrotate configs.  Where possible, as many of
 the configuration options have remained the same with a couple of notable
@@ -136,9 +136,28 @@ uncompresscmd   - The String command to be used to uncompress log files
 
 Further details about these options can be found by reading `man 8 logrotate`.
 
-### Examples
+## logrotate
 
+You may, optionally, declare the main `::logrotate` class to adjust some of the
+defaults that are used when intalling the logrotate package and creating the
+main `/etc/logrotate.conf` configuration file.
+
+This example will ensure that the logrotate package is latest and that the `dateext` and `compress` options are added to the defaults for a node.
+
+```puppet
+class { '::logrotate':
+  ensure => 'latest',
+  config => {
+    dateext  => true,
+    compress => true,
+  }
+}
 ```
+
+
+## Examples
+
+```puppet
 logrotate::conf { '/etc/logrotate.conf':
   rotate       => 10,
   rotate_every => 'week',

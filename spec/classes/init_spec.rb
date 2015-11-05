@@ -14,7 +14,7 @@ describe 'logrotate' do
           it { is_expected.to compile.with_all_deps }
 
           it do
-            should contain_package('logrotate').with_ensure('latest')
+            should contain_package('logrotate').with_ensure('present')
 
 #    should contain_file('/etc/logrotate.conf').with({
 #      'ensure'  => 'file',
