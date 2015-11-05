@@ -1,6 +1,6 @@
 {
   "name": "yo61-logrotate",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "author": "Robin Bowees <robin.bowes@yo61.com>",
   "summary": "Manage logrotate",
   "license": "MIT",
