@@ -2,6 +2,7 @@
 language: ruby
 branches:
   only:
+    - develop
     - master
 bundler_args: --without development system_tests
 before_install: rm Gemfile.lock || true
