@@ -9,7 +9,7 @@ class logrotate::defaults{
         case $::lsbdistcodename {
           'trusty': {
             logrotate::conf {'/etc/logrotate.conf':
-              su_group => 'syslog'
+              su_group => 'syslog',
             }
           }
           default: {
@@ -32,9 +32,9 @@ class logrotate::defaults{
           'wtmp':
             path        => '/var/log/wtmp',
             create_mode => '0664',
-        }        
+        }
       }
-      if !defined( Logrotate::Rule['btmp'] ) {      
+      if !defined( Logrotate::Rule['btmp'] ) {
         logrotate::rule {
         'btmp':
           path        => '/var/log/btmp',
@@ -63,7 +63,7 @@ class logrotate::defaults{
             path        => '/var/log/wtmp',
             create_mode => '0664',
             missingok   => false,
-            minsize     => '1M'
+            minsize     => '1M',
         }
       }
       if !defined( Logrotate::Rule['btmp'] ) {
@@ -72,7 +72,7 @@ class logrotate::defaults{
             path        => '/var/log/btmp',
             create_mode => '0600',
             minsize     => '1M';
-        }  
+        }
       }
     }
     'SuSE': {
@@ -88,7 +88,7 @@ class logrotate::defaults{
         create_group => 'utmp',
         rotate       => '99',
         maxage       => '365',
-        size         => '400k'
+        size         => '400k',
       }
 
       if !defined( Logrotate::Rule['wtmp'] ) {
@@ -96,8 +96,8 @@ class logrotate::defaults{
           'wtmp':
             path         => '/var/log/wtmp',
             create_mode  => '0664',
-            missingok    => false;  
-        }  
+            missingok    => false;
+        }
       }
       
       if !defined( Logrotate::Rule['btmp'] ) {
@@ -105,7 +105,7 @@ class logrotate::defaults{
           'btmp':
             path         => '/var/log/btmp',
             create_mode  => '0600',
-            create_group => 'root'            
+            create_group => 'root',
         }
       }
     }
