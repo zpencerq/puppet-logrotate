@@ -73,6 +73,12 @@
         "12.04",
         "14.04"
       ]
+    },
+    {
+      "operatingsystem": "Gentoo",
+      "operatingsystemrelease": [
+        "1.0"
+      ]
     }
   ]
 }
