@@ -28,18 +28,15 @@ class logrotate::defaults{
       }
 
       if !defined( Logrotate::Rule['wtmp'] ) {
-        logrotate::rule {
-          'wtmp':
+        logrotate::rule { 'wtmp':
             path        => '/var/log/wtmp',
             create_mode => '0664',
         }
       }
       if !defined( Logrotate::Rule['btmp'] ) {
-        logrotate::rule {
-        'btmp':
+        logrotate::rule { 'btmp':
           path        => '/var/log/btmp',
           create_mode => '0600',
-          
         }
       }
     }
@@ -93,8 +90,7 @@ class logrotate::defaults{
       }
 
       if !defined( Logrotate::Rule['wtmp'] ) {
-        logrotate::rule {
-          'wtmp':
+        logrotate::rule { 'wtmp':
             path        => '/var/log/wtmp',
             create_mode => '0664',
             missingok   => false,
@@ -102,11 +98,10 @@ class logrotate::defaults{
         }
       }
       if !defined( Logrotate::Rule['btmp'] ) {
-        logrotate::rule {
-          'btmp':
+        logrotate::rule { 'btmp':
             path        => '/var/log/btmp',
             create_mode => '0600',
-            minsize     => '1M';
+            minsize     => '1M',
         }
       }
     }
@@ -127,17 +122,15 @@ class logrotate::defaults{
       }
 
       if !defined( Logrotate::Rule['wtmp'] ) {
-        logrotate::rule {
-          'wtmp':
+        logrotate::rule { 'wtmp':
             path         => '/var/log/wtmp',
             create_mode  => '0664',
-            missingok    => false;
+            missingok    => false,
         }
       }
       
       if !defined( Logrotate::Rule['btmp'] ) {
-        logrotate::rule {
-          'btmp':
+        logrotate::rule { 'btmp':
             path         => '/var/log/btmp',
             create_mode  => '0600',
             create_group => 'root',
