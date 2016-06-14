@@ -5,13 +5,13 @@ class logrotate::defaults{
   case $::osfamily {
     'Debian': {
 
-      if !defined( Logrotate::Conf['/etc/logrotate.conf'] ) {
+      if !defined( Logrotate::Conf[$logrotate::logrotate_conf] ) {
         if versioncmp($::lsbdistrelease, '14.04') >= 0 {
-          logrotate::conf {'/etc/logrotate.conf':
+          logrotate::conf {$logrotate::logrotate_conf:
             su_group => 'syslog',
           }
         } else {
-          logrotate::conf {'/etc/logrotate.conf': }
+          logrotate::conf {$logrotate::logrotate_conf: }
         }
       }
 
@@ -37,9 +37,38 @@ class logrotate::defaults{
         }
       }
     }
+    'FreeBSD': {
+      if !defined( Logrotate::Conf[$logrotate::logrotate_conf] ) {
+        logrotate::conf {$logrotate::logrotate_conf:
+          dateext  => true,
+          compress => true,
+          ifempty  => false,
+          mail     => false,
+          olddir   => false,
+        }
+      }
+
+      Logrotate::Rule {
+        missingok    => true,
+        rotate_every => 'week',
+        create       => true,
+        create_owner => 'root',
+        create_group => 'wheel',
+        rotate       => '5',
+      }
+
+      if !defined( Logrotate::Rule['wtmp'] ) {
+        logrotate::rule { 'wtmp':
+            path        => '/var/log/wtmp',
+            missingok   => false,
+            create_mode => '0664',
+            minsize     => '1M',
+        }
+      }
+    }
     'Gentoo': {
-      if !defined( Logrotate::Conf['/etc/logrotate.conf'] ) {
-        logrotate::conf {'/etc/logrotate.conf':
+      if !defined( Logrotate::Conf[$logrotate::logrotate_conf] ) {
+        logrotate::conf {$logrotate::logrotate_conf:
           dateext  => true,
           compress => true,
           ifempty  => false,
@@ -73,8 +102,8 @@ class logrotate::defaults{
       }
     }
     'RedHat': {
-      if !defined( Logrotate::Conf['/etc/logrotate.conf'] ) {
-        logrotate::conf {'/etc/logrotate.conf': }
+      if !defined( Logrotate::Conf[$logrotate::logrotate_conf] ) {
+        logrotate::conf {$logrotate::logrotate_conf: }
       }
 
       Logrotate::Rule {
@@ -103,8 +132,8 @@ class logrotate::defaults{
       }
     }
     'SuSE': {
-      if !defined( Logrotate::Conf['/etc/logrotate.conf'] ) {
-        logrotate::conf {'/etc/logrotate.conf': }
+      if !defined( Logrotate::Conf[$logrotate::logrotate_conf] ) {
+        logrotate::conf {$logrotate::logrotate_conf: }
       }
 
       Logrotate::Rule {
@@ -135,8 +164,8 @@ class logrotate::defaults{
       }
     }
     default: {
-      if !defined( Logrotate::Conf['/etc/logrotate.conf'] ) {
-        logrotate::conf {'/etc/logrotate.conf': }
+      if !defined( Logrotate::Conf[$logrotate::logrotate_conf] ) {
+        logrotate::conf {$logrotate::logrotate_conf: }
       }
     }
   }

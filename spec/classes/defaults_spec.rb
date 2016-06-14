@@ -7,6 +7,9 @@ describe '::logrotate::defaults' do
         let(:facts) do
           facts
         end
+
+        let(:pre_condition) { 'class { "::logrotate": }' }
+
         case facts[:operatingsystem]
         when 'Debian'
           it do
