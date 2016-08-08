@@ -123,12 +123,12 @@ class logrotate::defaults{
 
       if !defined( Logrotate::Rule['wtmp'] ) {
         logrotate::rule { 'wtmp':
-            path         => '/var/log/wtmp',
-            create_mode  => '0664',
-            missingok    => false,
+            path        => '/var/log/wtmp',
+            create_mode => '0664',
+            missingok   => false,
         }
       }
-      
+
       if !defined( Logrotate::Rule['btmp'] ) {
         logrotate::rule { 'btmp':
             path         => '/var/log/btmp',
