@@ -30,7 +30,7 @@ describe 'logrotate::rule' do
       end
 
       context 'with an array path' do
-        let (:params) { { path: ['/var/log/foo1.log', '/var/log/foo2.log'] } }
+        let(:params) { { path: ['/var/log/foo1.log', '/var/log/foo2.log'] } }
         it do
           should contain_file('/etc/logrotate.d/test').with_content(
             %r{/var/log/foo1\.log /var/log/foo2\.log \{\n\}\n}
@@ -649,7 +649,7 @@ describe 'logrotate::rule' do
 
         it do
           should contain_file('/etc/logrotate.d/test'). \
-            with_content(/^  olddir \/var\/log\/old$/)
+            with_content(%r{^  olddir \/var\/log\/old$})
         end
       end
 
@@ -673,7 +673,7 @@ describe 'logrotate::rule' do
 
         it do
           should contain_file('/etc/logrotate.d/test'). \
-            with_content(/postrotate\n    \/bin\/true\n  endscript/)
+            with_content(%r{postrotate\n    \/bin\/true\n  endscript})
         end
       end
 
@@ -684,7 +684,7 @@ describe 'logrotate::rule' do
 
         it do
           should contain_file('/etc/logrotate.d/test'). \
-            with_content(/postrotate\n    \/bin\/true\n    \/bin\/false\n  endscript/)
+            with_content(%r{postrotate\n    \/bin\/true\n    \/bin\/false\n  endscript})
         end
       end
 
@@ -697,7 +697,7 @@ describe 'logrotate::rule' do
 
         it do
           should contain_file('/etc/logrotate.d/test'). \
-            with_content(/prerotate\n    \/bin\/true\n  endscript/)
+            with_content(%r{prerotate\n    \/bin\/true\n  endscript})
         end
       end
 
@@ -708,7 +708,7 @@ describe 'logrotate::rule' do
 
         it do
           should contain_file('/etc/logrotate.d/test'). \
-            with_content(/prerotate\n    \/bin\/true\n    \/bin\/false\n  endscript/)
+            with_content(%r{prerotate\n    \/bin\/true\n    \/bin\/false\n  endscript})
         end
       end
 
@@ -721,7 +721,7 @@ describe 'logrotate::rule' do
 
         it do
           should contain_file('/etc/logrotate.d/test'). \
-            with_content(/firstaction\n    \/bin\/true\n  endscript/)
+            with_content(%r{firstaction\n    \/bin\/true\n  endscript})
         end
       end
 
@@ -732,7 +732,7 @@ describe 'logrotate::rule' do
 
         it do
           should contain_file('/etc/logrotate.d/test'). \
-            with_content(/firstaction\n    \/bin\/true\n    \/bin\/false\n  endscript/)
+            with_content(%r{firstaction\n    \/bin\/true\n    \/bin\/false\n  endscript})
         end
       end
 
@@ -745,7 +745,7 @@ describe 'logrotate::rule' do
 
         it do
           should contain_file('/etc/logrotate.d/test'). \
-            with_content(/lastaction\n    \/bin\/true\n  endscript/)
+            with_content(%r{lastaction\n    \/bin\/true\n  endscript})
         end
       end
 
@@ -756,7 +756,7 @@ describe 'logrotate::rule' do
 
         it do
           should contain_file('/etc/logrotate.d/test'). \
-            with_content(/lastaction\n    \/bin\/true\n    \/bin\/false\n  endscript/)
+            with_content(%r{lastaction\n    \/bin\/true\n    \/bin\/false\n  endscript})
         end
       end
 

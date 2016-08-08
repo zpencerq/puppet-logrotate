@@ -25,7 +25,7 @@ describe 'logrotate::conf' do
         should contain_file('/etc/logrotate.conf').with('owner' => 'root',
                                                         'group'   => 'root',
                                                         'ensure'  => 'present',
-                                                        'mode'    => '0444').with_content(/\ninclude \/etc\/logrotate.d\n/)
+                                                        'mode'    => '0444').with_content(%r{\ninclude \/etc\/logrotate.d\n})
       end
 
       ###########################################################################
@@ -630,7 +630,7 @@ describe 'logrotate::conf' do
 
         it do
           should contain_file('/etc/logrotate.conf'). \
-            with_content(/^olddir \/var\/log\/old$/)
+            with_content(%r{^olddir \/var\/log\/old$})
         end
       end
 
@@ -654,7 +654,7 @@ describe 'logrotate::conf' do
 
         it do
           should contain_file('/etc/logrotate.conf'). \
-            with_content(/postrotate\n\s{2}\/bin\/true\nendscript/)
+            with_content(%r{postrotate\n\s{2}\/bin\/true\nendscript})
         end
       end
 
@@ -667,7 +667,7 @@ describe 'logrotate::conf' do
 
         it do
           should contain_file('/etc/logrotate.conf'). \
-            with_content(/prerotate\n\s{2}\/bin\/true\nendscript/)
+            with_content(%r{prerotate\n\s{2}\/bin\/true\nendscript})
         end
       end
 
@@ -680,7 +680,7 @@ describe 'logrotate::conf' do
 
         it do
           should contain_file('/etc/logrotate.conf'). \
-            with_content(/firstaction\n\s{2}\/bin\/true\nendscript/)
+            with_content(%r{firstaction\n\s{2}\/bin\/true\nendscript})
         end
       end
 
@@ -693,7 +693,7 @@ describe 'logrotate::conf' do
 
         it do
           should contain_file('/etc/logrotate.conf'). \
-            with_content(/lastaction\n\s{2}\/bin\/true\nendscript/)
+            with_content(%r{lastaction\n\s{2}\/bin\/true\nendscript})
         end
       end
 
