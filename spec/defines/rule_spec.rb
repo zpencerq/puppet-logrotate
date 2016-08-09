@@ -1205,4 +1205,23 @@ describe 'logrotate::rule' do
       end
     end
   end
+
+  context 'template should not inherit variables from other scopes' do
+    let(:title) { 'foo' }
+    let(:params) do
+      {
+        path: '/var/log/foo.log',
+        ifempty: true
+      }
+    end
+    let(:facts) do
+      {
+        osfamily: 'RedHat',
+        operatingsystemmajrelease: 7
+      }
+    end
+    it do
+      should contain_file('/etc/logrotate.d/btmp').without_content(%r{/ifempty/})
+    end
+  end
 end
