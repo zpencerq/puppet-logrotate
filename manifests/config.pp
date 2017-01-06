@@ -16,7 +16,7 @@ class logrotate::config{
   }
 
   if is_hash($config) {
-    $custom_config = {"${logrotate::logrotate_conf}" => $config}
+    $custom_config = {$logrotate::logrotate_conf => $config}
     create_resources('logrotate::conf', $custom_config)
   }
 
