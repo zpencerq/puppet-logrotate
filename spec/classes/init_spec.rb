@@ -16,7 +16,7 @@ describe 'logrotate' do
           it do
             is_expected.to contain_package('logrotate').with_ensure('present')
 
-            #    should contain_file('/etc/logrotate.conf').with({
+            #    is_expected.to contain_file('/etc/logrotate.conf').with({
             #      'ensure'  => 'file',
             #      'owner'   => 'root',
             #      'group'   => 'root',
@@ -31,11 +31,10 @@ describe 'logrotate' do
                                                                  'group'   => 'root',
                                                                  'mode'    => '0755')
 
-            is_expected.to contain_file('/etc/cron.daily/logrotate').with('ensure' => 'file',
+            is_expected.to contain_file('/etc/cron.daily/logrotate').with('ensure' => 'present',
                                                                           'owner'   => 'root',
                                                                           'group'   => 'root',
-                                                                          'mode'    => '0555',
-                                                                          'source'  => 'puppet:///modules/logrotate/etc/cron.daily/logrotate')
+                                                                          'mode'    => '0555')
 
             is_expected.to contain_class('logrotate::defaults')
           end
