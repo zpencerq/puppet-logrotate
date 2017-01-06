@@ -183,8 +183,22 @@ define logrotate::conf (
   validate_re("X${shredcycles}", ['^XUNDEFINED$', '^X\d+$'], "Logrotate::Conf[${name}]: shredcycles must be an integer")
   validate_re("X${start}", ['^XUNDEFINED$', '^X\d+$'], "Logrotate::Conf[${name}]: start must be an integer")
 
-  validate_re($su_user, ['^UNDEFINED$', '^[a-z_][a-z0-9_]{0,30}$'], "Logrotate::Conf[${name}]: su_user must match /^[a-z_][a-z0-9_]{0,30}$/")
-  validate_re($su_group, ['^UNDEFINED$', '^[a-z_][a-z0-9_]{0,30}$'], "Logrotate::Conf[${name}]: su_group must match /^[a-z_][a-z0-9_]{0,30}$/")
+  validate_re(
+    $su_user,
+    [
+      '^UNDEFINED$',
+      '^[a-z_][a-z0-9_]{0,30}$',
+    ],
+    "Logrotate::Conf[${name}]: su_user must match /^[a-z_][a-z0-9_]{0,30}$/"
+  )
+  validate_re(
+    $su_group,
+    [
+      '^UNDEFINED$',
+      '^[a-z_][a-z0-9_]{0,30}$',
+    ],
+    "Logrotate::Conf[${name}]: su_group must match /^[a-z_][a-z0-9_]{0,30}$/"
+  )
 
   case $mailfirst {
     'UNDEFINED',false: {}
