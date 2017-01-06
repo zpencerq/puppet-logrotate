@@ -506,3 +506,6 @@ RSpec/ExampleLength:
 
 RSpec/NamedSubject:
   Enabled: False
+
+RSpec/NestedGroups:
+  MaxNesting: 7
