@@ -1,12 +1,12 @@
 {
-  "name": "yo61-logrotate",
-  "version": "1.4.1",
-  "author": "Robin Bowees <robin.bowes@yo61.com>",
+  "name": "puppet-logrotate",
+  "version": "2.0.0",
+  "author": "Vox Pupuli",
   "summary": "Manage logrotate",
   "license": "MIT",
-  "source": "https://github.com/yo61/puppet-logrotate",
-  "project_page": "https://github.com/yo61/puppet-logrotate",
-  "issues_url": "https://github.com/yo61/puppet-logrotate/issues",
+  "source": "https://github.com/voxpupuli/puppet-logrotate",
+  "project_page": "https://github.com/voxpupuli/puppet-logrotate",
+  "issues_url": "https://github.com/voxpupuli/puppet-logrotate/issues",
   "tags": [
     "logrotate"
   ],
