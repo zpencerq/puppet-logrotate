@@ -11,11 +11,11 @@ describe 'logrotate' do
         context 'logrotate class without any parameters' do
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('logrotate') }
-          ['install', 'config','params', 'rules'].each do |classs|
+          %w[install config params rules].each do |classs|
             it { is_expected.to contain_class("logrotate::#{classs}") }
           end
 
-          ['logrotate_begin', 'logrotate_end'].each do |anchor|
+          %w[logrotate_begin logrotate_end].each do |anchor|
             it { is_expected.to contain_anchor(anchor) }
           end
 

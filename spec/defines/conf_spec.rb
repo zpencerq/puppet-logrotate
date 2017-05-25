@@ -9,6 +9,7 @@ describe 'logrotate::conf' do
         lsbdistrelease: 'Imaginary'
       }
     end
+
     context 'with an alphanumeric title' do
       let(:title) { '/etc/logrotate.conf' }
 

@@ -9,6 +9,7 @@ describe 'logrotate::rule' do
         lsbdistrelease: 'Imaginary'
       }
     end
+
     context 'with an alphanumeric title' do
       let(:title) { 'test' }
 
@@ -20,17 +21,23 @@ describe 'logrotate::rule' do
         end
       end
 
-      let(:params) { { path: '/var/log/foo.log' } }
-      it do
-        is_expected.to contain_class('logrotate')
-        is_expected.to contain_file('/etc/logrotate.d/test').with('owner' => 'root',
-                                                                  'group'   => 'root',
-                                                                  'ensure'  => 'present',
-                                                                  'mode'    => '0444').with_content(%r{^/var/log/foo\.log \{\n\}\n})
+      context 'with a configured path' do
+        let(:params) { { path: '/var/log/foo.log' } }
+
+        it do
+          is_expected.to contain_class('logrotate')
+          is_expected.to contain_file('/etc/logrotate.d/test').with(
+            'owner'  => 'root',
+            'group'  => 'root',
+            'ensure' => 'present',
+            'mode'   => '0444'
+          ).with_content(%r{^/var/log/foo\.log \{\n\}\n})
+        end
       end
 
       context 'with an array path' do
         let(:params) { { path: ['/var/log/foo1.log', '/var/log/foo2.log'] } }
+
         it do
           is_expected.to contain_file('/etc/logrotate.d/test').with_content(
             %r{/var/log/foo1\.log /var/log/foo2\.log \{\n\}\n}
@@ -1182,6 +1189,7 @@ describe 'logrotate::rule' do
           rotate_every: 'day'
         }
       end
+
       it do
         is_expected.to contain_file('/etc/logrotate.d/btmp'). \
           with_content(%r{^/var/log/btmp \{\n  daily\n  rotate 10\n\}\n})
@@ -1199,6 +1207,7 @@ describe 'logrotate::rule' do
           rotate_every: 'day'
         }
       end
+
       it do
         is_expected.to contain_file('/etc/logrotate.d/wtmp'). \
           with_content(%r{^/var/log/wtmp \{\n  daily\n  rotate 10\n\}\n})
