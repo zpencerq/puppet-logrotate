@@ -9,9 +9,15 @@ describe 'logrotate' do
         end
 
         context 'logrotate class without any parameters' do
-          let(:params) { {} }
-
           it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_class('logrotate') }
+          ['install', 'config','params', 'rules'].each do |classs|
+            it { is_expected.to contain_class("logrotate::#{classs}") }
+          end
+
+          ['logrotate_begin', 'logrotate_end'].each do |anchor|
+            it { is_expected.to contain_anchor(anchor) }
+          end
 
           it do
             is_expected.to contain_package('logrotate').with_ensure('present')
