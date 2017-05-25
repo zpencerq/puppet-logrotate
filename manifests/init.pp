@@ -17,16 +17,14 @@ class logrotate (
   $root_group         = $logrotate::params::root_group,
 ) inherits ::logrotate::params {
 
-  include ::logrotate::install
-  include ::logrotate::config
-  include ::logrotate::rules
-  include ::logrotate::defaults
+  contain ::logrotate::install
+  contain ::logrotate::config
+  contain ::logrotate::rules
+  contain ::logrotate::defaults
 
-  anchor{'logrotate_begin':}->
-  Class['::logrotate::install']->
-  Class['::logrotate::config']->
-  Class['::logrotate::rules']->
-  Class['::logrotate::defaults']->
-  anchor{'logrotate_end':}
+  Class['::logrotate::install']
+  -> Class['::logrotate::config']
+  -> Class['::logrotate::rules']
+  -> Class['::logrotate::defaults']
 
 }
