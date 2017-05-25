@@ -4,10 +4,14 @@ AllCops:
   Include:
     - ./**/*.rb
   Exclude:
+    - files/**/*
     - vendor/**/*
     - .vendor/**/*
     - pkg/**/*
     - spec/fixtures/**/*
+    - Gemfile
+    - Rakefile
+    - Guardfile
 Lint/ConditionPosition:
   Enabled: True
 
@@ -56,6 +60,9 @@ Style/AndOr:
 Style/RedundantSelf:
   Enabled: True
 
+Metrics/BlockLength:
+  Enabled: False
+
 # Method length is not necessarily an indicator of code quality
 Metrics/MethodLength:
   Enabled: False
@@ -70,7 +77,7 @@ Style/WhileUntilModifier:
 Lint/AmbiguousRegexpLiteral:
   Enabled: True
 
-Lint/Eval:
+Security/Eval:
   Enabled: True
 
 Lint/BlockAlignment:
@@ -298,7 +305,7 @@ Style/EmptyLiteral:
 Metrics/LineLength:
   Enabled: False
 
-Style/MethodCallParentheses:
+Style/MethodCallWithoutArgsParentheses:
   Enabled: True
 
 Style/MethodDefParentheses:
@@ -492,9 +499,13 @@ Lint/UselessAssignment:
   Enabled: True
 
 Style/ClosingParenthesisIndentation:
-  Enabled: False
+  Enabled: True
 
 # RSpec
+
+RSpec/BeforeAfterAll:
+  Exclude:
+    - spec/acceptance/**/*
 
 # We don't use rspec in this way
 RSpec/DescribeClass:
@@ -507,5 +518,18 @@ RSpec/ExampleLength:
 RSpec/NamedSubject:
   Enabled: False
 
+# disabled for now since they cause a lot of issues
+# these issues aren't easy to fix
+RSpec/RepeatedDescription:
+  Enabled: False
+
 RSpec/NestedGroups:
-  MaxNesting: 7
+  Enabled: False
+
+# this is broken on ruby1.9
+Style/IndentHeredoc:
+  Enabled: False
+
+# disable Yaml safe_load. This is needed to support ruby2.0.0 development envs
+Security/YAMLLoad:
+  Enabled: false
