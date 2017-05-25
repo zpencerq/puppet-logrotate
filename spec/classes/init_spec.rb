@@ -15,10 +15,6 @@ describe 'logrotate' do
             it { is_expected.to contain_class("logrotate::#{classs}") }
           end
 
-          %w[logrotate_begin logrotate_end].each do |anchor|
-            it { is_expected.to contain_anchor(anchor) }
-          end
-
           it do
             is_expected.to contain_package('logrotate').with_ensure('present')
 
