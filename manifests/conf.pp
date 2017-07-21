@@ -96,6 +96,8 @@ define logrotate::conf (
 
   include ::logrotate
 
+  $rules_configdir = $::logrotate::rules_configdir
+
   file { $path:
     ensure  => $ensure,
     owner   => $logrotate::root_user,

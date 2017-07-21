@@ -1,6 +1,9 @@
 # apply defaults
 #
-class logrotate::defaults ($rule_default, $rules = { }){
+class logrotate::defaults (
+  $rules = $logrotate::params::base_rules,
+  $rule_default = $logrotate::params::rule_default
+){
 
   assert_private()
 

@@ -1,26 +1,26 @@
 shared_context 'config file' do |base_params = {}|
   let(:space_prefix) { '' }
 
-  shared_examples 'error raised' do |param, p_type|
+  shared_examples 'error raised' do |param, _|
     context "=> 'foo'" do
       let(:params) { { param.to_sym => 'foo' } }
 
       it {
         expect do
           is_expected.to contain_file(config_file)
-        end.to raise_error(Puppet::Error, %r{'#{param}' expects a(|n) #{p_type} value})
+        end.to raise_error Puppet::PreformattedError
       }
     end
   end
 
-  shared_examples 'error match' do |param, p_type|
+  shared_examples 'error match' do |param, _|
     context "=> 'foo'" do
       let(:params) { { param.to_sym => 'foo' } }
 
       it {
         expect do
           is_expected.to contain_file(config_file)
-        end.to raise_error(Puppet::PreformattedError, %r{'#{param}' expects a (match for|value of type) #{p_type}})
+        end.to raise_error Puppet::PreformattedError
       }
     end
   end
