@@ -122,67 +122,55 @@
 #     postrotate   => '/etc/init.d/nginx restart',
 #   }
 define logrotate::rule(
-  Enum['present','absent'] $ensure   = 'present',
-  Optional[
-    Variant[
-      Stdlib::UnixPath,
-      Array[Stdlib::UnixPath]
-    ]]              $path   = undef,
-  Optional[Boolean] $compress        = undef,
-  Optional[String]  $compresscmd     = undef,
-  Optional[String]  $compressext     = undef,
-  Optional[String]  $compressoptions = undef,
-  Optional[Boolean] $copy            = undef,
-  Optional[Boolean] $copytruncate    = undef,
-  Optional[Boolean] $create          = undef,
-  Optional[String]  $create_mode     = undef,
-  Optional[String]  $create_owner    = undef,
-  Optional[String]  $create_group    = undef,
-  Optional[Boolean] $dateext         = undef,
-  Optional[String]  $dateformat      = undef,
-  Optional[Boolean] $delaycompress   = undef,
-  Optional[String]  $extension       = undef,
-  Optional[Boolean] $ifempty         = undef,
-  Optional[Variant[
-            String,
-            Boolean]]        $mail      = undef,
-  Optional[Enum['mailfirst',
-                'maillast']] $mail_when = undef,
-  Optional[Integer]          $maxage    = undef,
-  Optional[Logrotate::Size]  $minsize   = undef,
-  Optional[Logrotate::Size]  $maxsize   = undef,
-  Optional[Boolean]          $missingok = undef,
-  Optional[Variant[Boolean,String]] $olddir = undef,
-  Optional[Variant[String,Array[String]]] $postrotate  = undef,
-  Optional[Variant[String,Array[String]]] $prerotate   = undef,
-  Optional[Variant[String,Array[String]]] $firstaction = undef,
-  Optional[Variant[String,Array[String]]] $lastaction  = undef,
-  Optional[Integer] $rotate          = undef,
-  Optional[Logrotate::Every] $rotate_every = undef,
-  Optional[Logrotate::Size]  $size   = undef,
-  Optional[Boolean] $sharedscripts   = undef,
-  Optional[Boolean] $shred           = undef,
-  Optional[Integer] $shredcycles     = undef,
-  Optional[Integer] $start           = undef,
-  Optional[Logrotate::UserOrGroup] $su_owner = undef,
-  Optional[Logrotate::UserOrGroup] $su_group = undef,
-  Optional[String] $uncompresscmd    = undef
+  Pattern[/^[a-zA-Z0-9\._-]+$/] $rulename           = $title,
+  Enum['present','absent'] $ensure                  = 'present',
+  Optional[Logrotate::Path] $path                   = undef,
+  Optional[Boolean] $compress                       = undef,
+  Optional[String] $compresscmd                     = undef,
+  Optional[String] $compressext                     = undef,
+  Optional[String] $compressoptions                 = undef,
+  Optional[Boolean] $copy                           = undef,
+  Optional[Boolean] $copytruncate                   = undef,
+  Optional[Boolean] $create                         = undef,
+  Optional[String] $create_mode                     = undef,
+  Optional[String] $create_owner                    = undef,
+  Optional[String] $create_group                    = undef,
+  Optional[Boolean] $dateext                        = undef,
+  Optional[String] $dateformat                      = undef,
+  Optional[Boolean] $delaycompress                  = undef,
+  Optional[String] $extension                       = undef,
+  Optional[Boolean] $ifempty                        = undef,
+  Optional[Variant[String,Boolean]] $mail           = undef,
+  Optional[Enum['mailfirst','maillast']] $mail_when = undef,
+  Optional[Integer] $maxage                         = undef,
+  Optional[Logrotate::Size] $minsize                = undef,
+  Optional[Logrotate::Size] $maxsize                = undef,
+  Optional[Boolean] $missingok                      = undef,
+  Optional[Variant[Boolean,String]] $olddir         = undef,
+  Optional[Logrotate::Commands] $postrotate         = undef,
+  Optional[Logrotate::Commands] $prerotate          = undef,
+  Optional[Logrotate::Commands] $firstaction        = undef,
+  Optional[Logrotate::Commands] $lastaction         = undef,
+  Optional[Integer] $rotate                         = undef,
+  Optional[Logrotate::Every] $rotate_every          = undef,
+  Optional[Logrotate::Size] $size                   = undef,
+  Optional[Boolean] $sharedscripts                  = undef,
+  Optional[Boolean] $shred                          = undef,
+  Optional[Integer] $shredcycles                    = undef,
+  Optional[Integer] $start                          = undef,
+  Optional[Logrotate::UserOrGroup] $su_owner        = undef,
+  Optional[Logrotate::UserOrGroup] $su_group        = undef,
+  Optional[String] $uncompresscmd                   = undef
 ) {
-
-  #############################################################################
-  # SANITY CHECK VALUES
-
-  validate_re($name, '^[a-zA-Z0-9\._-]+$', "Logrotate::Rule[${name}]: namevar must be alphanumeric")
-
   case $ensure {
     'present': {
       if $path == undef {
-        fail("Logrotate::Rule[${name}]: path not specified")
+        fail("Logrotate::Rule[${rulename}]: path not specified")
       }
     }
     'absent': { }
     default: {
-      fail("Logrotate::Rule[${name}]: invalid ensure value")
+      fail("Logrotate::Rule[${rulename}]: invalid ensure value")
     }
   }
 
@@ -208,15 +196,15 @@ define logrotate::rule(
   }
 
   if ($create_group != undef) and ($create_owner == undef) {
-    fail("Logrotate::Rule[${name}]: create_group requires create_owner")
+    fail("Logrotate::Rule[${rulename}]: create_group requires create_owner")
   }
 
   if ($create_owner != undef) and ($create_mode == undef) {
-    fail("Logrotate::Rule[${name}]: create_owner requires create_mode")
+    fail("Logrotate::Rule[${rulename}]: create_owner requires create_mode")
   }
 
   if ($create_mode != undef) and ($create != true) {
-    fail("Logrotate::Rule[${name}]: create_mode requires create")
+    fail("Logrotate::Rule[${rulename}]: create_mode requires create")
   }
 
   if $su_owner and !defined('$su_group') {
@@ -238,16 +226,16 @@ define logrotate::rule(
   case $rotate_every {
     'hour', 'hourly': {
       include ::logrotate::hourly
-      $rule_path = "${logrotate::rules_configdir}/hourly/${name}"
+      $rule_path = "${logrotate::rules_configdir}/hourly/${rulename}"
 
-      file { "${logrotate::rules_configdir}/${name}":
+      file { "${logrotate::rules_configdir}/${rulename}":
         ensure => absent,
       }
     }
     default: {
-      $rule_path = "${logrotate::rules_configdir}/${name}"
+      $rule_path = "${logrotate::rules_configdir}/${rulename}"
 
-      file { "${logrotate::rules_configdir}/hourly/${name}":
+      file { "${logrotate::rules_configdir}/hourly/${rulename}":
         ensure => absent,
       }
     }

@@ -604,7 +604,7 @@ describe 'logrotate::rule' do
     it {
       expect do
         is_expected.to contain_file('/etc/logrotate.d/foo bar')
-      end.to raise_error(Puppet::Error, %r{namevar must be alphanumeric})
+      end.to raise_error(Puppet::PreformattedError)
     }
   end
 

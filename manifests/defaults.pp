@@ -1,7 +1,7 @@
 # apply defaults
 #
 class logrotate::defaults (
-  $rules = $logrotate::params::base_rules,
+  $rules        = $logrotate::params::base_rules,
   $rule_default = $logrotate::params::rule_default
 ){
 
@@ -15,8 +15,7 @@ class logrotate::defaults (
 
   $rules.each |$rule_name, $params| {
     if !defined(Logrotate::Rule[$rule_name]) {
-      $_merged_params =
-        merge($rule_default,$params)
+      $_merged_params = merge($rule_default,$params)
       logrotate::rule{ $rule_name:
         * => $_merged_params,
       }

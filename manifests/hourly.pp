@@ -13,7 +13,7 @@
 #     ensure => absent,
 #   }
 class logrotate::hourly (
-  Enum['present','absent'] $ensure='present'
+  Enum['present','absent'] $ensure = 'present'
 ) {
 
   $dir_ensure = $ensure ? {
@@ -21,18 +21,18 @@ class logrotate::hourly (
     'present' => 'directory'
   }
 
-  file { '/etc/logrotate.d/hourly':
+  file { "${logrotate::rules_configdir}/hourly":
     ensure => $dir_ensure,
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
   }
-  file { '/etc/cron.hourly/logrotate':
+  file { $logrotate::cron_hourly_file:
     ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0555',
     source  => 'puppet:///modules/logrotate/etc/cron.hourly/logrotate',
-    require => [ File['/etc/logrotate.d/hourly'], Package['logrotate'], ],
+    require => [File["${logrotate::rules_configdir}/hourly"],Package['logrotate']],
   }
 }

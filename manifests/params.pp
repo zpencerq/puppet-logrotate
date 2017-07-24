@@ -21,6 +21,14 @@ class logrotate::params {
           create_mode => '0600',
         },
       }
+      $rule_default = {
+        missingok    => true,
+        rotate_every => 'monthly',
+        create       => true,
+        create_owner => 'root',
+        create_group => 'utmp',
+        rotate       => 1,
+      }
     }
     'Debian': {
       $default_su_group = versioncmp($::operatingsystemmajrelease, '14.00') ? {
@@ -42,6 +50,14 @@ class logrotate::params {
           path        => '/var/log/btmp',
           create_mode => '0600',
         },
+      }
+      $rule_default = {
+        missingok    => true,
+        rotate_every => 'monthly',
+        create       => true,
+        create_owner => 'root',
+        create_group => 'utmp',
+        rotate       => 1,
       }
     }
     'Gentoo': {
@@ -67,6 +83,14 @@ class logrotate::params {
           create_mode => '0600',
         },
       }
+      $rule_default = {
+        missingok    => true,
+        rotate_every => 'monthly',
+        create       => true,
+        create_owner => 'root',
+        create_group => 'utmp',
+        rotate       => 1,
+      }
     }
     'RedHat': {
       $conf_params = {
@@ -90,6 +114,14 @@ class logrotate::params {
           path        => '/var/log/btmp',
           create_mode => '0600',
         },
+      }
+      $rule_default = {
+        missingok    => true,
+        rotate_every => 'monthly',
+        create       => true,
+        create_owner => 'root',
+        create_group => 'utmp',
+        rotate       => 1,
       }
     }
     'SuSE': {
@@ -145,7 +177,8 @@ class logrotate::params {
   $cron_daily_hour    = 1
   $cron_daily_minute  = 0
   $cron_hourly_minute = 1
-  $config_file        = '/etc/logrotate.conf'
+  $cron_hourly_file   = '/etc/cron.hourly/logrotate'
+  $config_file        = "${configdir}/logrotate.conf"
   $logrotate_conf     = "${configdir}/logrotate.conf"
   $root_user          = 'root'
   $rules_configdir    = "${configdir}/logrotate.d"

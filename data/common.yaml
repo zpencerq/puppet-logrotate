@@ -1,8 +1,0 @@
----
-logrotate::defaults::rule_default:
-  missingok: true
-  rotate_every: 'monthly'
-  create: true
-  create_owner: 'root'
-  create_group: 'utmp'
-  rotate: 1
