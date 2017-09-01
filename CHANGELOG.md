@@ -4,12 +4,19 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not impact the functionality of the module.
 
+## [Unreleased](https://github.com/voxpupuli/puppet-logrotate/tree/HEAD)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v2.0.0...HEAD)
+
+**Merged pull requests:**
+
+- BREAKING: Introduce Puppet 4 datatypes and drop Puppet 3 support [\#68](https://github.com/voxpupuli/puppet-logrotate/pull/68) ([mmerfort](https://github.com/mmerfort))
+
 ## [v2.0.0](https://github.com/voxpupuli/puppet-logrotate/tree/v2.0.0) (2017-05-25)
 [Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.4.0...v2.0.0)
 
 **Closed issues:**
 
-- Support Ubuntu 16.04 [\#59](https://github.com/voxpupuli/puppet-logrotate/issues/59)
 - Logrotate rule ERB template should not take variables from the scope object [\#37](https://github.com/voxpupuli/puppet-logrotate/issues/37)
 - Ubuntu Xenial 16.04 compaibility [\#34](https://github.com/voxpupuli/puppet-logrotate/issues/34)
 - string 'undef' now treated as undef [\#26](https://github.com/voxpupuli/puppet-logrotate/issues/26)
@@ -17,6 +24,7 @@ These should not impact the functionality of the module.
 
 **Merged pull requests:**
 
+- release 2.0.0 [\#64](https://github.com/voxpupuli/puppet-logrotate/pull/64) ([bastelfreak](https://github.com/bastelfreak))
 - Fix typo [\#58](https://github.com/voxpupuli/puppet-logrotate/pull/58) ([gabe-sky](https://github.com/gabe-sky))
 - Adding support for maxsize also in main config [\#57](https://github.com/voxpupuli/puppet-logrotate/pull/57) ([seefood](https://github.com/seefood))
 - Fix rubocop checks [\#53](https://github.com/voxpupuli/puppet-logrotate/pull/53) ([coreone](https://github.com/coreone))
@@ -56,72 +64,47 @@ These should not impact the functionality of the module.
 - Set default package ensure value to 'installed' [\#12](https://github.com/voxpupuli/puppet-logrotate/pull/12) ([natemccurdy](https://github.com/natemccurdy))
 - Add support for maxsize directive [\#10](https://github.com/voxpupuli/puppet-logrotate/pull/10) ([zeromind](https://github.com/zeromind))
 
-## [v1.2.8](https://github.com/voxpupuli/puppet-logrotate/tree/v1.2.8) (2015-09-14)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.2.7...v1.2.8)
+## v1.2.8 (2015-09-14)
 
-**Closed issues:**
+- Fix hidden unicode character (#8)
+- Allow config to be passed in as an hash (#6)
+- Fix dependency issue (#7)
+- refactor main class (mostly to facilitate #7)
+- update test environment to use puppet 4
+- switch stdlib fixture to https source
 
-- Dependency issue in manifests/rule.pp [\#7](https://github.com/voxpupuli/puppet-logrotate/issues/7)
+## v1.2.7 (2015-05-06)
 
-**Merged pull requests:**
+- Metadata-only release (just bumped version)
 
-- Remove hidden Unicode character \(0x000A\) from comments [\#8](https://github.com/voxpupuli/puppet-logrotate/pull/8) ([antaflos](https://github.com/antaflos))
+## v1.2.6 (2015-05-06)
 
-## [v1.2.7](https://github.com/voxpupuli/puppet-logrotate/tree/v1.2.7) (2015-05-06)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.2.6...v1.2.7)
+- Fix test failures on future parser
 
-## [v1.2.6](https://github.com/voxpupuli/puppet-logrotate/tree/v1.2.6) (2015-05-06)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.2.5...v1.2.6)
+## v1.2.5 (2015-05-06)
 
-## [v1.2.5](https://github.com/voxpupuli/puppet-logrotate/tree/v1.2.5) (2015-05-06)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.2.4...v1.2.5)
+- Switch some validation code to use validate_re
 
-## [v1.2.4](https://github.com/voxpupuli/puppet-logrotate/tree/v1.2.4) (2015-05-06)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.2.3...v1.2.4)
+## v1.2.4 (2015-05-06)
 
-**Closed issues:**
+- Add puppet-lint exclusions
 
-- Add puppet-lint exceptions [\#4](https://github.com/voxpupuli/puppet-logrotate/issues/4)
-- Don't use getvar in defaults.pp [\#1](https://github.com/voxpupuli/puppet-logrotate/issues/1)
+## v1.2.3 (2015-05-06)
 
-## [v1.2.3](https://github.com/voxpupuli/puppet-logrotate/tree/v1.2.3) (2015-05-06)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.2.2...v1.2.3)
+- More work on testing
+- fix warning when running puppet module list caused by "-" instead of "/" in dependencies in metadata
 
-## [v1.2.2](https://github.com/voxpupuli/puppet-logrotate/tree/v1.2.2) (2015-05-06)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.2.1...v1.2.2)
+## v1.2.3 (2015-05-06)
 
-**Merged pull requests:**
+- removed (pushed without CHANGELOG update
 
-- Fixed typo which produces a dependency warning [\#2](https://github.com/voxpupuli/puppet-logrotate/pull/2) ([mat1010](https://github.com/mat1010))
+## v1.2.1 (2015-05-06)
 
-## [v1.2.1](https://github.com/voxpupuli/puppet-logrotate/tree/v1.2.1) (2015-05-06)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.2.0...v1.2.1)
+- Update tests, Rakefile, etc.
 
-## [v1.2.0](https://github.com/voxpupuli/puppet-logrotate/tree/v1.2.0) (2015-03-25)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/1.1.1...v1.2.0)
+## v1.2.0 (2015-03-25)
 
-## [1.1.1](https://github.com/voxpupuli/puppet-logrotate/tree/1.1.1) (2013-06-27)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/1.1.0...1.1.1)
-
-## [1.1.0](https://github.com/voxpupuli/puppet-logrotate/tree/1.1.0) (2013-06-09)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/1.0.2...1.1.0)
-
-## [1.0.2](https://github.com/voxpupuli/puppet-logrotate/tree/1.0.2) (2012-10-27)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.0.2...1.0.2)
-
-## [v1.0.2](https://github.com/voxpupuli/puppet-logrotate/tree/v1.0.2) (2012-10-27)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/1.0.1...v1.0.2)
-
-## [1.0.1](https://github.com/voxpupuli/puppet-logrotate/tree/1.0.1) (2012-05-26)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.0.1...1.0.1)
-
-## [v1.0.1](https://github.com/voxpupuli/puppet-logrotate/tree/v1.0.1) (2012-05-26)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/1.0.0...v1.0.1)
-
-## [1.0.0](https://github.com/voxpupuli/puppet-logrotate/tree/1.0.0) (2012-03-04)
-[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.0.0...1.0.0)
-
-## [v1.0.0](https://github.com/voxpupuli/puppet-logrotate/tree/v1.0.0) (2012-03-04)
+- First release to puppetforge
 
 
 \* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
