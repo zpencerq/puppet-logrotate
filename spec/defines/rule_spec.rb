@@ -589,7 +589,7 @@ describe 'logrotate::rule' do
     %w[minsize maxsize size].each do |param|
       it_behaves_like 'logrotate::size', param
     end
-    %w[compress copy copytruncate create dateext delaycompress ifempty missingok sharedscripts shred].each do |param|
+    %w[compress copy copytruncate create dateext delaycompress ifempty missingok sharedscripts shred dateyesterday].each do |param|
       it_behaves_like 'boolean flag', param
     end
     %w[maxage rotate shredcycles start].each do |param|
