@@ -5,7 +5,7 @@ class logrotate (
   Boolean $manage_cron_daily         = true,
   String $package                    = 'logrotate',
   Hash $rules                        = {},
-  Optional[String] $config           = undef,
+  Optional[Hash] $config             = undef,
   Integer[0,23] $cron_daily_hour     = $logrotate::params::cron_daily_hour,
   Integer[0,59] $cron_daily_minute   = $logrotate::params::cron_daily_minute,
   Integer[0,59] $cron_hourly_minute  = $logrotate::params::cron_hourly_minute,
