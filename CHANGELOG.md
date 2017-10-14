@@ -4,7 +4,16 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v3.0.0](https://github.com/voxpupuli/puppet-logrotate/tree/v3.0.0) (2017-10-11)
+## [v3.0.1](https://github.com/voxpupuli/puppet-logrotate/tree/v3.0.1) (2017-10-14)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v3.0.0...v3.0.1)
+
+**Fixed bugs:**
+
+- wrong datatype for $config, s/String/Hash [\#78](https://github.com/voxpupuli/puppet-logrotate/pull/78) ([bastelfreak](https://github.com/bastelfreak))
+
+## [v3.0.0](https://github.com/voxpupuli/puppet-logrotate/tree/v3.0.0) (2017-10-10)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v2.0.0...v3.0.0)
 
 **Closed issues:**
@@ -13,11 +22,14 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
+- release 3.0.0 [\#75](https://github.com/voxpupuli/puppet-logrotate/pull/75) ([bastelfreak](https://github.com/bastelfreak))
 - Fix changelog [\#73](https://github.com/voxpupuli/puppet-logrotate/pull/73) ([alexjfisher](https://github.com/alexjfisher))
 - Added support for dateyesterday within logrotate::rule [\#71](https://github.com/voxpupuli/puppet-logrotate/pull/71) ([cliff-wakefield](https://github.com/cliff-wakefield))
 - BREAKING: Introduce Puppet 4 datatypes and drop Puppet 3 support [\#68](https://github.com/voxpupuli/puppet-logrotate/pull/68) ([mmerfort](https://github.com/mmerfort))
+- release 2.0.0 [\#64](https://github.com/voxpupuli/puppet-logrotate/pull/64) ([bastelfreak](https://github.com/bastelfreak))
 
 ## [v2.0.0](https://github.com/voxpupuli/puppet-logrotate/tree/v2.0.0) (2017-05-25)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.4.0...v2.0.0)
 
 **Closed issues:**
@@ -29,7 +41,6 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- release 2.0.0 [\#64](https://github.com/voxpupuli/puppet-logrotate/pull/64) ([bastelfreak](https://github.com/bastelfreak))
 - Fix typo [\#58](https://github.com/voxpupuli/puppet-logrotate/pull/58) ([gabe-sky](https://github.com/gabe-sky))
 - Adding support for maxsize also in main config [\#57](https://github.com/voxpupuli/puppet-logrotate/pull/57) ([seefood](https://github.com/seefood))
 - Fix rubocop checks [\#53](https://github.com/voxpupuli/puppet-logrotate/pull/53) ([coreone](https://github.com/coreone))
@@ -40,6 +51,7 @@ These should not affect the functionality of the module.
 - Add gentoo support [\#27](https://github.com/voxpupuli/puppet-logrotate/pull/27) ([baurmatt](https://github.com/baurmatt))
 
 ## [v1.4.0](https://github.com/voxpupuli/puppet-logrotate/tree/v1.4.0) (2016-05-30)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.3.0...v1.4.0)
 
 **Closed issues:**
@@ -58,6 +70,7 @@ These should not affect the functionality of the module.
 - Feature/fix wtmp btmp [\#16](https://github.com/voxpupuli/puppet-logrotate/pull/16) ([robinbowes](https://github.com/robinbowes))
 
 ## [v1.3.0](https://github.com/voxpupuli/puppet-logrotate/tree/v1.3.0) (2015-11-05)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-logrotate/compare/v1.2.8...v1.3.0)
 
 **Closed issues:**
