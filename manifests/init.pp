@@ -3,6 +3,7 @@ class logrotate (
   Logrotate::Ensurable $ensure       = present,
   Boolean $hieramerge                = false,
   Boolean $manage_cron_daily         = true,
+  Boolean $purge_configdir           = false,
   String $package                    = 'logrotate',
   Hash $rules                        = {},
   Optional[Hash] $config             = undef,

@@ -41,6 +41,19 @@ describe 'logrotate' do
             is_expected.to contain_class('logrotate::defaults')
           end
         end
+
+        context 'logrotate class with purge_configdir set to true' do
+          let(:params) { { purge_configdir: true } }
+
+          it do
+            is_expected.to contain_file('/etc/logrotate.d').with('ensure'  => 'directory',
+                                                                 'owner'   => 'root',
+                                                                 'group'   => 'root',
+                                                                 'mode'    => '0755',
+                                                                 'purge'   => true,
+                                                                 'recurse' => true)
+          end
+        end
       end
     end
   end
