@@ -30,6 +30,7 @@ define logrotate::conf (
   Optional[Enum['mailfirst', 'maillast']] $mail_when = undef,
   Optional[Integer] $maxage                          = undef,
   Optional[Logrotate::Size] $minsize                 = undef,
+  Optional[Logrotate::Size] $maxsize                 = undef,
   Optional[Boolean] $missingok                       = undef,
   Optional[Variant[Boolean,String]] $olddir          = undef,
   Optional[String] $postrotate                       = undef,
