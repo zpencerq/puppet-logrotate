@@ -14,6 +14,7 @@ class logrotate (
   String $configdir                  = $logrotate::params::configdir,
   String $logrotate_bin              = $logrotate::params::logrotate_bin,
   String $logrotate_conf             = $logrotate::params::logrotate_conf,
+  Boolean $manage_package            = $logrotate::params::manage_package,
   String $rules_configdir            = $logrotate::params::rules_configdir,
   Logrotate::UserOrGroup $root_user  = $logrotate::params::root_user,
   Logrotate::UserOrGroup $root_group = $logrotate::params::root_group,

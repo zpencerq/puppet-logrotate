@@ -42,6 +42,14 @@ describe 'logrotate' do
           end
         end
 
+        context 'logrotate class with manage_package set to to false' do
+          let(:params) { { manage_package: false } }
+
+          it do
+            is_expected.not_to contain_package('logrotate')
+          end
+        end
+
         context 'logrotate class with purge_configdir set to true' do
           let(:params) { { purge_configdir: true } }
 
