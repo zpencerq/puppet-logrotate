@@ -158,8 +158,8 @@ define logrotate::rule(
   Optional[Boolean] $shred                          = undef,
   Optional[Integer] $shredcycles                    = undef,
   Optional[Integer] $start                          = undef,
-  Optional[Logrotate::UserOrGroup] $su_owner        = undef,
-  Optional[Logrotate::UserOrGroup] $su_group        = undef,
+  Optional[String] $su_owner                        = undef,
+  Optional[String] $su_group                        = undef,
   Optional[String] $uncompresscmd                   = undef
 ) {
   case $ensure {

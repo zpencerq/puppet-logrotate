@@ -43,8 +43,8 @@ define logrotate::conf (
   Optional[Boolean] $shred                           = undef,
   Optional[Integer] $shredcycles                     = undef,
   Optional[Integer] $start                           = undef,
-  Optional[Logrotate::UserOrGroup] $su_user          = undef,
-  Optional[Logrotate::UserOrGroup] $su_group         = undef,
+  Optional[String] $su_user                          = undef,
+  Optional[String] $su_group                         = undef,
   Optional[String] $uncompresscmd                    = undef
 ) {
 
