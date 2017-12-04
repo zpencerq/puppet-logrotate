@@ -105,6 +105,9 @@ define logrotate::conf (
     group   => $logrotate::root_group,
     mode    => '0444',
     content => template('logrotate/etc/logrotate.conf.erb'),
-    require => Package['logrotate'],
+  }
+
+  if $logrotate::manage_package {
+    Package[$logrotate::package] -> File[$path]
   }
 }

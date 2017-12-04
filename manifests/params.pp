@@ -185,6 +185,7 @@ class logrotate::params {
   $cron_hourly_file   = '/etc/cron.hourly/logrotate'
   $config_file        = "${configdir}/logrotate.conf"
   $logrotate_conf     = "${configdir}/logrotate.conf"
+  $manage_package     = true
   $root_user          = 'root'
   $rules_configdir    = "${configdir}/logrotate.d"
 }
