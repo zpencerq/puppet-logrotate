@@ -16,8 +16,8 @@ class logrotate (
   String $logrotate_conf             = $logrotate::params::logrotate_conf,
   Boolean $manage_package            = $logrotate::params::manage_package,
   String $rules_configdir            = $logrotate::params::rules_configdir,
-  Logrotate::UserOrGroup $root_user  = $logrotate::params::root_user,
-  Logrotate::UserOrGroup $root_group = $logrotate::params::root_group,
+  String $root_user                  = $logrotate::params::root_user,
+  String $root_group                 = $logrotate::params::root_group,
 ) inherits logrotate::params {
 
   contain ::logrotate::install
