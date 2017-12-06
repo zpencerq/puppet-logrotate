@@ -1,6 +1,6 @@
 #
 class logrotate (
-  Logrotate::Ensurable $ensure       = present,
+  String $ensure                     = present,
   Boolean $hieramerge                = false,
   Boolean $manage_cron_daily         = true,
   Boolean $purge_configdir           = false,
